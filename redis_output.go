@@ -40,9 +40,10 @@ func (rop *RedisOutput) Run(or pipeline.OutputRunner, h pipeline.PluginHelper) e
 		_,err := rop.conn.Do("LPUSH", rop.conf.Key, payload)
 		if err != nil {
 			or.LogError(err)
+			err = fmt.Errorf("Error encoding message: %s", err.Error())
 			continue
 		}
-		pack.Recycle(_)
+		pack.Recycle(err)
 	}
 	return nil
 }
