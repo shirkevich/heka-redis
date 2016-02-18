@@ -42,7 +42,7 @@ func (rop *RedisOutput) Run(or pipeline.OutputRunner, h pipeline.PluginHelper) e
 			or.LogError(err)
 			continue
 		}
-		pack.recycle()
+		pack.Recycle(_)
 	}
 	return nil
 }
